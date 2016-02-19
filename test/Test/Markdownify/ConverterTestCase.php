@@ -82,6 +82,7 @@ class ConverterTestCase extends \PHPUnit_Framework_TestCase
     public function providerAutoescapeConversion()
     {
         return array(
+            array('Baddum&nbsp;!', 'Baddum !'),
             array('AT&amp;T', 'AT&T'),
             array('4 &lt; 5', '4 < 5'),
             array('&copy;', '&copy;')

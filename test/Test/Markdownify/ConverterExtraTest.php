@@ -140,4 +140,35 @@ EOF;
 EOF;
         $this->assertEquals($md, $this->converter->parseString($html));
     }
+
+    public function testTableConversionWithSpecialCharacter()
+    {
+        $html = <<<EOF
+<table>
+<thead>
+<tr>
+  <th>First Header</th>
+  <th>Second Header</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Cell 1</td>
+  <td>Cell 2</td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td>Baddum</td>
+</tr>
+</tbody>
+</table>
+EOF;
+        $md = <<<EOF
+| First Header | Second Header |
+| ------------ | ------------- |
+| Cell 1       | Cell 2        |
+|              | Baddum        |
+EOF;
+        $this->assertEquals($md, $this->converter->parseString($html));
+    }
 }

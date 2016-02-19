@@ -394,10 +394,14 @@ class Converter
             }
         }
         // cleanup
-        $this->output = rtrim(str_replace('&amp;', '&', str_replace('&lt;', '<', str_replace('&gt;', '>', $this->output))));
+        $this->output = $this->cleanUpContent($this->output);
         // end parsing, flush stacked tags
         $this->flushFootnotes();
         $this->stack = array();
+    }
+    
+    protected function cleanUpContent($content) {
+        return rtrim(str_replace(array('&amp;', '&lt;', '&gt;', '&nbsp;'), array('&', '<', '>', ' '), $content));
     }
 
     /**

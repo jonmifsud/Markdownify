@@ -319,6 +319,7 @@ class ConverterExtra extends Converter
      */
     protected function alignTdContent(&$content, $col)
     {
+        $content = $this->cleanUpContent($content);
         if (!isset($this->table['aligns'][$col])) {
             $this->table['aligns'][$col] = 'left';
         }
